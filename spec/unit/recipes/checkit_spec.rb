@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: audit_test
-# Recipe:: breakit
+# Spec:: default
 #
 # Copyright 2015 Matt Stratton
 # 
@@ -16,8 +16,21 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-file '/tmp/mattrules.txt' do
-  content 'matt is awesome'
-  action :create
-end
 
+require 'spec_helper'
+
+describe 'audit_test::checkit' do
+
+  context 'When all attributes are default, on an unspecified platform' do
+
+    let(:chef_run) do
+      runner = ChefSpec::ServerRunner.new
+      runner.converge(described_recipe)
+    end
+
+    it 'converges successfully' do
+      chef_run # This should not raise an error
+    end
+
+  end
+end

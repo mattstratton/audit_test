@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: audit_test
-# Recipe:: breakit
+# Recipe:: checkit
 #
 # Copyright 2015 Matt Stratton
 # 
@@ -16,8 +16,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-file '/tmp/mattrules.txt' do
-  content 'matt is awesome'
-  action :create
+control_group '1 Install Updates, Patches and Additional Security Software' do
+  control 'Evil file'
+    it '1.1.1 Create Separate Partition for /tmp' do
+      expect(file('/tmp/mattrules.txt')).to_not be_file
+    end
+  end
 end
 
